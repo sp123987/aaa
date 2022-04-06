@@ -1,0 +1,34 @@
+R1(config)# username Admin1 secret admin1pa55
+
+R1(config)# aaa new-model
+
+R1(config)# aaa authentication login default local
+
+R1(config)# line console 0
+R1(config-line)# login authentication default
+
+exit
+
+
+AAA on vty lines for r1 - 
+
+R1(config)# ip domain-name ccnasecurity.com
+b. Create an RSA crypto key using 1024 bits.
+R1(config)# crypto key generate rsa
+Choose the size of the key modulus in the range of 360 to 2048 for your
+General Purpose Keys. Choosing a key modulus greater than 512 may take
+a few minutes.
+How many bits in the modulus [512]: 1024
+
+R1(config)# aaa authentication login SSH-LOGIN local
+
+R1(config)# line vty 0 4
+R1(config-line)# login authentication SSH-LOGIN
+R1(config-line)# transport input ssh 
+R1(config-line)# end
+
+
+Verify the SSH configuration SSH to R1 from the command prompt of PC-A..
+ssh –l Admin1 192.168.1.1
+Open
+Password: admin1pa55
